@@ -4,7 +4,7 @@ This app uses Hydra AI to process user messages and dynamically show UI componen
 
 Quickstart:
 
-0. Follow instructions here to install the app in your Slack workspace: 
+0. Follow instructions here to install the app in your Slack workspace: [slack app setup instructions](https://github.com/slack-samples/bolt-ts-starter-template?tab=readme-ov-file#create-a-slack-app)
 1. Setup your `.env` file:
 
    The app requires the following environment variables for Hydra:
