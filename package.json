@@ -1,0 +1,39 @@
+{
+  "name": "hydra-slack-app-template",
+  "version": "1.0.0",
+  "description": "A scaffold template for AI Slack apps built with Hydra AI",
+  "main": "dist/app.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "npm run build && node ./dist/app.js",
+    "lint": "npx @biomejs/biome check *.ts listeners",
+    "lint:fix": "npx @biomejs/biome check --write *.ts listeners",
+    "test": "npm run build && npm run lint"
+  },
+  "author": "Hydra AI",
+  "license": "MIT",
+  "keywords": [
+    "slack",
+    "hydra",
+    "hydraai",
+    "ai",
+    "typescript"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hydra-ai/hydra-slack-app-template.git"
+  },
+  "bugs": {
+    "url": "https://github.com/hydra-ai/hydra-slack-app-template/issues"
+  },
+  "dependencies": {
+    "@hydra-ai/slack": "^0.0.1",
+    "@slack/bolt": "^4.1.1",
+    "dotenv": "~16.4.7",
+    "jsx-slack": "^6.1.2"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^1.9.4",
+    "typescript": "^5.7.2"
+  }
+}
