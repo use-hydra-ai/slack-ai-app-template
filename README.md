@@ -29,9 +29,28 @@ Conceptually, Hydra is designed to simplify how to build AI into apps. Instead o
  Here's how it works in this template:
 
 **Define Actions**
+
+The user should be able to create, read, update, and delete from a list of `Task` objects, where each `Task` has an `id`, `name`, and `status`. The status should be one of `not started`, `in progress`, or `complete`.
+
+Example user messages that should trigger these actions:
+
+- "Create a task to buy milk"
+- "Delete the task to buy milk"
+- "Mark the task to buy milk as complete"
+
 **Component Definitions**
 
+To enable the above actions, we need to define UI components that let the user create, read, update, and delete `Task` objects.
+
+We can use a TaskForm component for creating and editing `Task` objects. We can use a TaskList component for reading, and deleting `Task` objects.
+
 **Register Components**
+
+We tell Hydra about the TaskForm and TaskList components, including:
+
+- The component name and description of when it should be used.
+- The component parameters/props and their descriptions.
+- Any functions that Hydra might need to call to fetch extra context that should be used when generating the components.
 
 **Let Hydra do the rest**
 
