@@ -1,5 +1,5 @@
 import { Actions, Blocks, Button, Context, Divider, Header, JSXSlack, Section } from 'jsx-slack';
-import { Task } from '../types/Task';
+import { Task } from '../types/task';
 
 interface TaskListProps {
     tasks: Task[];

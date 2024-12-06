@@ -1,5 +1,5 @@
 import { Actions, Blocks, Button, Input, JSXSlack } from 'jsx-slack';
-import { Task } from '../types/Task';
+import { Task } from '../types/task';
 
 interface TaskFormProps {
     task?: Task;
@@ -18,13 +18,10 @@ export const TaskForm = ({ task, isEditing = false }: TaskFormProps) => {
                 required
             />
             <Actions>
-                <Button value="not started">Not Started</Button>
-                <Button value="complete">Complete</Button>
-            </Actions>
-            <Actions>
-                <Button style="primary">
+                <Button style="primary" value="save_task_form" actionId="save_task_form">
                     {isEditing ? 'Update Task' : 'Create Task'}
                 </Button>
+                <Button style="danger" value="cancel_form" actionId="cancel_form">Cancel</Button>
             </Actions>
         </Blocks>
     );
