@@ -1,4 +1,4 @@
-import { Button, Divider, JSXSlack, Section } from 'jsx-slack';
+import { Actions, Blocks, Button, Context, Divider, Header, JSXSlack, Section } from 'jsx-slack';
 import { Task } from '../types/Task';
 
 interface TaskListProps {
@@ -9,7 +9,6 @@ export const TaskList = ({ tasks }: TaskListProps) => {
     const getStatusEmoji = (status: Task['status']) => {
         switch (status) {
             case 'not started': return '⭕';
-            case 'in progress': return '🔄';
             case 'complete': return '✅';
             default: return '❓';
         }
@@ -17,32 +16,33 @@ export const TaskList = ({ tasks }: TaskListProps) => {
 
 
     return JSXSlack(
-        <>
+        <Blocks>
+            <Header>Tasks</Header>
+            <Divider />
             {tasks.map((task, index) => (
                 <>
-                    <Section>
-                        <b>{getStatusEmoji(task.status)} {task.name}</b>
-                        <Section>
-                            <Button value={`status:${task.id}:not started`}
-                                style={task.status === 'not started' ? 'primary' : undefined}>
-                                Not Started
-                            </Button>
-                            <Button value={`status:${task.id}:in progress`}
-                                style={task.status === 'in progress' ? 'primary' : undefined}>
-                                In Progress
-                            </Button>
+                    <Header>
+                        {getStatusEmoji(task.status)} <b>{task.name}</b>
+                    </Header>
+
+                    {task.status === 'complete' ? (
+                        <Context>done!</Context>
+                    ) : (
+                        <Actions>
                             <Button value={`status:${task.id}:complete`}
-                                style={task.status === 'complete' ? 'primary' : undefined}>
+                                style={'primary'}>
                                 Complete
                             </Button>
-                        </Section>
+                        </Actions>
+                    )}
+                    <Actions>
                         <Button value={`edit:${task.id}`} style="primary">
                             Edit
                         </Button>
                         <Button value={`delete:${task.id}`} style="danger">
                             Delete
                         </Button>
-                    </Section>
+                    </Actions>
                     {index < tasks.length - 1 && <Divider />}
                 </>
             ))
@@ -52,6 +52,6 @@ export const TaskList = ({ tasks }: TaskListProps) => {
                     <Section>No tasks found</Section>
                 )
             }
-        </>
+        </Blocks>
     );
 }; 
