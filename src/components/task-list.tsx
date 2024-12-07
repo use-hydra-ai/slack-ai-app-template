@@ -41,14 +41,6 @@ export const TaskList = ({ tasks }: TaskListProps) => {
                             </Button>
                         </Actions>
                     )}
-                    <Actions>
-                        <Button value={`edit:${task.id}`}>
-                            Edit
-                        </Button>
-                        <Button value={`delete:${task.id}`} style="danger">
-                            Delete
-                        </Button>
-                    </Actions>
                     {index < sortedTasks.length - 1 && <Divider />}
                 </>
             ))
