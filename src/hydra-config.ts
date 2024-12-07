@@ -1,4 +1,6 @@
 import { HydraClient } from "@hydra-ai/slack";
+import { ComponentContextTool } from "@hydra-ai/slack/dist/hydra-ai/model/component-metadata";
+import { getTasks } from "./api/task-service";
 import { TaskForm } from "./components/TaskForm";
 import { TaskList } from "./components/TaskList";
 
@@ -11,7 +13,7 @@ const taskPropsDefinition = `
 }
 `;
 
-export function registerComponents(userId: string) {
+export function registerComponents() {
   const hydra = new HydraClient({
     hydraApiKey: process.env.HYDRAAI_API_KEY,
   });
@@ -23,6 +25,7 @@ export function registerComponents(userId: string) {
     propsDefinition: {
       task: taskPropsDefinition,
     },
+    contextTools: [tasksContextTool],
   });
 
   hydra.registerComponent({
@@ -32,7 +35,21 @@ export function registerComponents(userId: string) {
     propsDefinition: {
       tasks: `${taskPropsDefinition}[]`,
     },
+    contextTools: [tasksContextTool],
   });
 
   return hydra;
+}
+
+
+const tasksContextTool: ComponentContextTool = {
+  getComponentContext: async () => {
+    const tasks = await getTasks();
+    return tasks;
+  },
+  definition: {
+    name: "getAllTasks",
+    description: "Gets the list of all tasks",
+    parameters: [],
+  }
 }

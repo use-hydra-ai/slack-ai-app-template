@@ -1,7 +1,23 @@
 import { Task } from '../types/task';
 
 // In-memory storage for tasks (replace with database in production)
-const taskStore: Task[] = [];
+const taskStore: Task[] = [
+    {
+        id: '1',
+        name: 'Setup development environment',
+        status: 'complete'
+    },
+    {
+        id: '2',
+        name: 'Review project requirements',
+        status: 'not started'
+    },
+    {
+        id: '3',
+        name: 'Create initial project structure',
+        status: 'complete'
+    }
+];
 
 export const createTask = (task: Omit<Task, 'id'>): Task => {
     const newTask: Task = {
@@ -49,6 +65,6 @@ export const deleteTask = (taskId: string): boolean => {
 };
 
 // Helper function to generate unique task IDs
-const generateTaskId = (): string => {
+export const generateTaskId = (): string => {
     return Math.random().toString(36).substr(2, 9);
 }; 

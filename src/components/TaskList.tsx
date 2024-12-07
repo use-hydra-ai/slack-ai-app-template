@@ -14,12 +14,18 @@ export const TaskList = ({ tasks }: TaskListProps) => {
         }
     };
 
+    // Sort tasks - 'not started' first, then 'complete'
+    const sortedTasks = [...tasks].sort((a, b) => {
+        if (a.status === 'not started' && b.status === 'complete') return -1;
+        if (a.status === 'complete' && b.status === 'not started') return 1;
+        return 0;
+    });
 
     return JSXSlack(
         <Blocks>
             <Header>Tasks</Header>
             <Divider />
-            {tasks.map((task, index) => (
+            {sortedTasks.map((task, index) => (
                 <>
                     <Header>
                         {getStatusEmoji(task.status)} <b>{task.name}</b>
@@ -43,7 +49,7 @@ export const TaskList = ({ tasks }: TaskListProps) => {
                             Delete
                         </Button>
                     </Actions>
-                    {index < tasks.length - 1 && <Divider />}
+                    {index < sortedTasks.length - 1 && <Divider />}
                 </>
             ))
             }
