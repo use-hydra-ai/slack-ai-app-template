@@ -4,8 +4,8 @@ import messages from './messages';
 
 
 const registerListeners = (app: App) => {
-  actions.register(app);
   messages.register(app);
+  actions.register(app);
 };
 
 export default registerListeners;

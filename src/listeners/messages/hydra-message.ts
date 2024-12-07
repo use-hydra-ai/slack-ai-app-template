@@ -62,7 +62,7 @@ export const hydraMessageCallback = async ({
         // Save the timestamp for updates
         progressMessageTs = initialMessage.ts || "";
 
-        const hydra = registerComponents((message as any).user);
+        const hydra = registerComponents();
         await hydra.generateComponent(messageText, handleProgressUpdate);
     } catch (error) {
         console.error(error);
