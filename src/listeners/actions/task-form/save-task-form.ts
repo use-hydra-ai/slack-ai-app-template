@@ -26,7 +26,7 @@ const saveTaskFormCallback = async ({ ack, respond, body }: AllMiddlewareArgs & 
         }
         await respond({
             delete_original: true,
-            text: "✅ Task saved!"
+            text: `✅ Task ${taskName} saved!`
         });
     }
 };
