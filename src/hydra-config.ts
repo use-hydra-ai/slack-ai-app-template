@@ -41,7 +41,6 @@ export function registerComponents() {
   return hydra;
 }
 
-
 const tasksContextTool: ComponentContextTool = {
   getComponentContext: async () => {
     const tasks = await getTasks();
