@@ -35,14 +35,14 @@ export const TaskList = ({ tasks }: TaskListProps) => {
                         <Context>done!</Context>
                     ) : (
                         <Actions>
-                            <Button value={`status:${task.id}:complete`}
+                            <Button actionId="complete_task" value={JSON.stringify({ taskId: task.id })}
                                 style={'primary'}>
-                                Complete
+                                Done?
                             </Button>
                         </Actions>
                     )}
                     <Actions>
-                        <Button value={`edit:${task.id}`} style="primary">
+                        <Button value={`edit:${task.id}`}>
                             Edit
                         </Button>
                         <Button value={`delete:${task.id}`} style="danger">

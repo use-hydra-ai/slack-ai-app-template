@@ -1,8 +1,8 @@
 import { HydraClient } from "@hydra-ai/slack";
 import { ComponentContextTool } from "@hydra-ai/slack/dist/hydra-ai/model/component-metadata";
 import { getTasks } from "./api/task-service";
-import { TaskForm } from "./components/TaskForm";
-import { TaskList } from "./components/TaskList";
+import { TaskForm } from "./components/task-form";
+import { TaskList } from "./components/task-list";
 
 
 const taskPropsDefinition = `
