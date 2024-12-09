@@ -33,6 +33,10 @@ export const getTasks = (): Task[] => {
     return taskStore;
 };
 
+export const getTasksByIds = (taskIdList: string[]): Task[] => {
+    return taskStore.filter(task => taskIdList.includes(task.id));
+};
+
 export const getTask = (taskId: string): Task | undefined => {
     return taskStore.find(task => task.id === taskId);
 };
