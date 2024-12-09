@@ -4,13 +4,11 @@ import { Task } from "../../../types/task";
 
 const saveTaskFormCallback = async ({ ack, respond, body }: AllMiddlewareArgs & SlackActionMiddlewareArgs<BlockAction<ButtonAction>>) => {
     await ack();
-    console.log('saveTaskFormCallback', body);
     if (body.actions[0].value) {
         const taskId = JSON.parse(body.actions[0].value).taskId;
         const stateValues = body.state?.values;
         const taskName = Object.values(stateValues?.taskName || {})[0]?.value || '';
 
-        console.log('taskId', taskId);
         if (!taskId) {
             const task: Task = {
                 id: generateTaskId(),
