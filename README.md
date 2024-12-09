@@ -30,7 +30,7 @@
 
 ## Concept
 
-Hydra is designed to simplify how to build AI into apps. Instead of trying to think through all the complexeties of AI systems, the app design flow when using Hydra is:
+Hydra is designed to simplify how to build AI into apps. Instead of trying to think through all the complexities of AI systems, the app design flow when using Hydra is:
 
 1. Define what actions a user should be able to perform. Often this just means defining what data structures your app will store, and what actions you want the user to be able to perform on that data.
 2. Define the UI components that are needed to perform those actions, where each component has props, or parameters, that allow different options for usage.
