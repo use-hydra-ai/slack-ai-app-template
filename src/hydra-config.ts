@@ -5,6 +5,16 @@ import { TaskForm } from "./components/task-form";
 import { TaskList } from "./components/task-list";
 
 
+const editTaskPropsDefinition = {
+  taskId: 'string',
+  name: 'string',
+  isEditing: 'boolean == true',
+}
+
+const createTaskPropsDefinition = {
+  name: 'string',
+}
+
 const taskPropsDefinition = `
 {
   id: string;
@@ -19,12 +29,18 @@ export function registerComponents() {
   });
 
   hydra.registerComponent({
-    name: 'task-form',
-    description: 'A form to create or edit a task',
+    name: 'create-task-form',
+    description: 'A form to create a new task',
     component: TaskForm,
-    propsDefinition: {
-      task: taskPropsDefinition,
-    },
+    propsDefinition: createTaskPropsDefinition,
+    contextTools: [tasksContextTool],
+  });
+
+  hydra.registerComponent({
+    name: 'edit-task-form',
+    description: 'A form to edit an existing task. Use this whenever the user wants to edit or update a task.',
+    component: TaskForm,
+    propsDefinition: editTaskPropsDefinition,
     contextTools: [tasksContextTool],
   });
 
