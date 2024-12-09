@@ -2,7 +2,9 @@ import { HydraClient } from "@hydra-ai/slack";
 import { ComponentContextTool } from "@hydra-ai/slack/dist/hydra-ai/model/component-metadata";
 import { getTasks } from "./api/task-service";
 import { TaskForm } from "./components/task-form";
+import { TaskFormLoading } from "./components/task-form-loading";
 import { TaskList } from "./components/task-list";
+import { TaskListLoading } from "./components/task-list-loading";
 
 
 const editTaskPropsDefinition = {
@@ -34,6 +36,7 @@ export function registerComponents() {
     component: TaskForm,
     propsDefinition: createTaskPropsDefinition,
     contextTools: [tasksContextTool],
+    loadingComponent: TaskFormLoading,
   });
 
   hydra.registerComponent({
@@ -42,6 +45,7 @@ export function registerComponents() {
     component: TaskForm,
     propsDefinition: editTaskPropsDefinition,
     contextTools: [tasksContextTool],
+    loadingComponent: TaskFormLoading,
   });
 
   hydra.registerComponent({
@@ -52,6 +56,7 @@ export function registerComponents() {
       tasks: `${taskPropsDefinition}[]`,
     },
     contextTools: [tasksContextTool],
+    loadingComponent: TaskListLoading,
   });
 
   return hydra;
