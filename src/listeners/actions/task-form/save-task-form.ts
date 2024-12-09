@@ -1,5 +1,5 @@
 import { AllMiddlewareArgs, BlockAction, ButtonAction, SlackActionMiddlewareArgs } from "@slack/bolt";
-import { createTask, generateTaskId, updateTask } from "../../../api/task-service";
+import { createTask, generateTaskId, getTask, updateTask } from "../../../api/task-service";
 import { Task } from "../../../types/task";
 
 const saveTaskFormCallback = async ({ ack, respond, body }: AllMiddlewareArgs & SlackActionMiddlewareArgs<BlockAction<ButtonAction>>) => {
@@ -17,10 +17,11 @@ const saveTaskFormCallback = async ({ ack, respond, body }: AllMiddlewareArgs & 
             };
             await createTask(task);
         } else {
+            const existingTask = await getTask(taskId);
             const task: Task = {
                 id: taskId,
                 name: taskName,
-                status: 'not started',
+                status: existingTask?.status || 'not started',
             };
             await updateTask(taskId, task);
         }

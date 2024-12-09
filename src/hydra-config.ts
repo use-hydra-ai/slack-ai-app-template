@@ -1,17 +1,21 @@
 import { HydraClient } from "@hydra-ai/slack";
 import { ComponentContextTool } from "@hydra-ai/slack/dist/hydra-ai/model/component-metadata";
-import { getTasks } from "./api/task-service";
+import { getTasks, getTasksByIds } from "./api/task-service";
 import { TaskForm } from "./components/task-form";
+import { TaskFormLoading } from "./components/task-form-loading";
 import { TaskList } from "./components/task-list";
+import { TaskListLoading } from "./components/task-list-loading";
 
 
-const taskPropsDefinition = `
-{
-  id: string;
-  name: string;
-  status: 'not started' | 'complete';
+const editTaskPropsDefinition = {
+  taskId: 'string',
+  name: 'string',
+  isEditing: 'boolean == true',
 }
-`;
+
+const createTaskPropsDefinition = {
+  name: 'string',
+}
 
 export function registerComponents() {
   const hydra = new HydraClient({
@@ -19,13 +23,21 @@ export function registerComponents() {
   });
 
   hydra.registerComponent({
-    name: 'task-form',
-    description: 'A form to create or edit a task',
+    name: 'create-task-form',
+    description: 'A form to create a new task',
     component: TaskForm,
-    propsDefinition: {
-      task: taskPropsDefinition,
-    },
+    propsDefinition: createTaskPropsDefinition,
     contextTools: [tasksContextTool],
+    loadingComponent: TaskFormLoading,
+  });
+
+  hydra.registerComponent({
+    name: 'edit-task-form',
+    description: 'A form to edit an existing task. Use this whenever the user wants to edit or update a task.',
+    component: TaskForm,
+    propsDefinition: editTaskPropsDefinition,
+    contextTools: [tasksContextTool],
+    loadingComponent: TaskFormLoading,
   });
 
   hydra.registerComponent({
@@ -33,9 +45,14 @@ export function registerComponents() {
     description: 'A list of tasks',
     component: TaskList,
     propsDefinition: {
-      tasks: `${taskPropsDefinition}[]`,
+      taskIdList: 'string[]',
     },
     contextTools: [tasksContextTool],
+    loadingComponent: TaskListLoading,
+    generateProps: async (context: { taskIdList: string[] }) => {
+      const tasks = await getTasksByIds(context.taskIdList);
+      return { tasks: tasks };
+    },
   });
 
   return hydra;
