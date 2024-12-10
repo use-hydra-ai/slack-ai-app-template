@@ -1,8 +1,10 @@
 import type { App } from '@slack/bolt';
-import { hydraMessageCallback } from './hydra-message';
+import { helloMessageCallback } from './hello-message';
 
 const register = (app: App) => {
-  app.message(/.*/, hydraMessageCallback);
+  app.message('hello', helloMessageCallback);
 };
+
+
 
 export default { register };
