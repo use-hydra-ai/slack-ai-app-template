@@ -27,7 +27,6 @@
     "url": "https://github.com/use-hydra-ai/slack-ai-app-template/issues"
   },
   "dependencies": {
-    "@hydra-ai/slack": "^0.0.1",
     "@slack/bolt": "^4.1.1",
     "dotenv": "~16.4.7",
     "jsx-slack": "^6.1.2"
