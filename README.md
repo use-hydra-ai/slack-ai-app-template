@@ -41,13 +41,12 @@ Hydra is designed to simplify how to build AI into apps. Instead of trying to th
 
 **Define Actions**
 
-The user should be able to create, read, update, and delete from a list of `Task` objects, where each `Task` has an `id`, `name`, and `status`. The status should be one of `not started`, `in progress`, or `complete`.
+The user should be able to create, read, update, and delete from a list of `Task` objects, where each `Task` has an `id`, `name`, and `status`. The status should be `not started` or `complete`.
 
 Example user messages that should trigger these actions:
 
 - "Create a task to buy milk"
-- "Delete the task to buy milk"
-- "Mark the task to buy milk as complete"
+- "Show my tasks that are not complete"
 
 **Component Definitions**
 
