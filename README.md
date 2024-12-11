@@ -5,7 +5,8 @@
 <p align="center">
   <a href="#concept"><strong>Concept</strong></a> ·
   <a href="#quickstart"><strong>Quickstart</strong></a> ·
-  <a href="#project-structure"><strong>Project Structure</strong></a>
+  <a href="#project-structure"><strong>Project Structure</strong></a> ·
+  <a href="https://www.usehydra.ai/docs/tutorials/slack-ai-todo-app/overview"><strong>Tutorial</strong></a>
 </p>
 <br/>
 
@@ -13,7 +14,10 @@
   <img src="./assets/demo.gif" alt="Demo of Hydra AI Slack App" width="600"/>
 </p>
 
+
+
 ## Quickstart:
+
 
 0. Follow instructions here to install the app in your Slack workspace: [slack app setup instructions](https://github.com/slack-samples/bolt-ts-starter-template?tab=readme-ov-file#create-a-slack-app)
 1. Setup your `.env` file:
@@ -27,6 +31,9 @@
 1. `npm install`
 2. `npm start`
 3. Add the app to a channel and try sending a message like 
+
+
+note: You can follow a tutorial to learn how to build this app [here.](https://www.usehydra.ai/docs/tutorials/slack-ai-todo-app/overview)
 
 ## Concept
 
