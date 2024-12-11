@@ -5,6 +5,4 @@ const register = (app: App) => {
   app.message('hello', helloMessageCallback);
 };
 
-
-
 export default { register };
